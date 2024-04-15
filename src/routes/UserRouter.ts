@@ -1,13 +1,13 @@
-import * as express from "express";
-import * as userController from "../controllers/UserController";
-import globalErrorHandler from "../utils/GlobalErrorHandler";
-
-const UserRouter = express.Router();
+import * as express from 'express'
+import * as userController from '../controllers/UserController'
+// import authenticateJWT from '../utils/AuthMiddleware'
 
 
-UserRouter.post("/", userController.createUser, globalErrorHandler);
+const UserRouter = express.Router()
+
+UserRouter.post('/', userController.createUser)
+UserRouter.post('/login', userController.userloginControoler)
+UserRouter.get('/:id', userController.getUserController,)
 
 
-UserRouter.post("/login", userController.userloginControoler, globalErrorHandler)
-
-export default UserRouter;
+export default UserRouter

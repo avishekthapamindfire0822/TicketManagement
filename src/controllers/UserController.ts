@@ -15,7 +15,7 @@ export const createUser = globalRequestHandler(
         data: createdUser,
       });
     } else {
-      res.status(StatusCodes.NOT_ACCEPTABLE).json({
+      res.status(StatusCodes.BAD_REQUEST).json({
         message: "User Already Exists",
       });
     }
@@ -28,7 +28,7 @@ export const userloginControoler = globalRequestHandler(
     const save = await userService.loginUser(userdata);
     if (save) {
       res.status(StatusCodes.OK).json({
-        message: "Update user successfully",
+        message: " User login successfully",
         data: save,
       });
     } else {
@@ -38,3 +38,18 @@ export const userloginControoler = globalRequestHandler(
     }
   }
 );
+
+
+export const getUserController = globalRequestHandler(async(req:Request,res:Response):Promise<void>=>{
+  const getUserid = parseInt(req.params.id)
+  const get = await userService.getUserService(getUserid)
+  if (get) {
+    res.status(StatusCodes.OK).json({
+      message: " User get successfully",
+      data: get,
+    });
+  } else {
+    res.status(StatusCodes.NOT_FOUND).json({
+      message: "User Not Found !",
+    });
+  }})

@@ -18,7 +18,7 @@ model users {
   name       String?   
   email      String    @unique 
   password   String
-  tickets    tickets[]
+  tickets    tickets []
   tokens     String? 
   created_at DateTime  @default(now())
 }
@@ -32,7 +32,7 @@ model tickets {
   priority      Priority
   status        status
   due_date      DateTime
-  comment_count Int      @default(0)
+  comment_count Int  @default(0)
 }
 
 enum Priority {

@@ -62,3 +62,22 @@ export const loginUser = async (user: User): Promise<any> => {
     throw new Error("Internal Server Error");
   }
 };
+
+
+export const getUserService =async(id:number):Promise<any>=>{
+  try {
+    const getUsr = await prisma.users.findFirst({
+    where:{
+      id:id
+    },select:{
+      name:true,
+      email:true,
+      tickets:true
+    }
+    })
+    return getUsr
+  } catch (error) {
+    throw new Error("Internal Server Error");
+
+  }
+}
