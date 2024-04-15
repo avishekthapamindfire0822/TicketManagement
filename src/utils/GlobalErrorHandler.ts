@@ -13,8 +13,8 @@ function globalErrorHandler(err: { message: string; statusCode: number; }, req: 
     
     let status = HTTPStatusCode.InternalServerError;
     let errorMessage = ErrorMessages.defaultError;
-
     switch (true) {
+        
         case err.message.includes("Internal server error"):
             status = HTTPStatusCode.InternalServerError;
             errorMessage = ErrorMessages.Internal;
@@ -36,10 +36,11 @@ function globalErrorHandler(err: { message: string; statusCode: number; }, req: 
             errorMessage = ErrorMessages.BadRequest;
             break;
         default:
+           
+
             break;
     }
-
-    res.status(status).json({ error: errorMessage });
+    res.status(status).json({ error: errorMessage});
 }
 
 export default globalErrorHandler;
