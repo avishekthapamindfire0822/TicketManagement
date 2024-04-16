@@ -72,7 +72,8 @@ export const getUserService =async(id:number):Promise<any>=>{
     },select:{
       name:true,
       email:true,
-      tickets:true
+      tickets:true,
+      tokens:true
     }
     })
     return getUsr

@@ -5,7 +5,10 @@ import bodyParser = require("body-parser");
 import RootRouter from "./routes";
 import { app } from "./app";
 import globalErrorHandler from "./utils/GlobalErrorHandler";
+import * as cors from "cors";
 const PORT = environment.SERVER_PORT || 3000;
+
+app.use(cors())
 app.use(bodyParser.json());
 app.use("/api", RootRouter);
 app.use(globalErrorHandler)
