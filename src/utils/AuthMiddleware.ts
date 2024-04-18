@@ -3,7 +3,9 @@ import { StatusCodes } from "http-status-codes";
 import * as jwt from "jsonwebtoken"
 const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
     let authHeader = req.headers.authorization;
+    console.log("Request Object: ", req.headers)
     if (authHeader) {
+        console.log(authHeader,"token")
         const token = authHeader;
        jwt.verify(token, process.env.JWT_KEY as string, (err: jwt.VerifyErrors | null, decoded: jwt.JwtPayload): any => {
      

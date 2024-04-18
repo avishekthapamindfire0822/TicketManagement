@@ -82,3 +82,22 @@ export const getUserService =async(id:number):Promise<any>=>{
 
   }
 }
+
+
+
+export const getuserLogout =async(id:number):Promise<any>=>{
+  try {
+    const logoutuser = await prisma.users.update({
+      where: {
+        id:id,
+      },
+      data: {
+        tokens:null,
+      },
+    });
+    return logoutuser
+  } catch (error) {
+    throw new Error("Internal Server Error");
+
+  }
+}

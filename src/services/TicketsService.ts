@@ -13,7 +13,7 @@ export const createTicket = async (ticket: tickets): Promise<tickets> => {
         description:description,
         priority:priority as Priority, 
         status:status  as status,
-        due_date:new Date(),
+        due_date:new Date()
       },
     });
     return savedTicket;

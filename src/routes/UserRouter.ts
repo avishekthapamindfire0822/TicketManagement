@@ -8,6 +8,8 @@ const UserRouter = express.Router()
 UserRouter.post('/', userController.createUser)
 UserRouter.post('/login', userController.userloginControoler)
 UserRouter.get('/:id', authenticateJWT, userController.getUserController,)
+UserRouter.delete('/:id', authenticateJWT, userController.userLogout,)
+
 
 
 export default UserRouter

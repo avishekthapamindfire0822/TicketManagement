@@ -7,9 +7,10 @@ import globalRequestHandler from "../utils/GlobalRequestHandler";
 export const createUser = globalRequestHandler(
   async (req: Request, res: Response): Promise<void> => {
     const newUser: User = req.body;
+    // console.log(newUser)
     const createdUser = await userService.registerUser(newUser);
-    console.log(createdUser);
-    if (createdUser !== null) {
+    // console.log(createdUser);
+    if (createdUser&& Object.keys(createdUser).length !== 0) {
       res.status(StatusCodes.CREATED).json({
         message: "Create user successfully",
         data: createdUser,
@@ -17,6 +18,7 @@ export const createUser = globalRequestHandler(
     } else {
       res.status(StatusCodes.BAD_REQUEST).json({
         message: "User Already Exists",
+        error: "Invalid user data",
       });
     }
   }
@@ -53,3 +55,18 @@ export const getUserController = globalRequestHandler(async(req:Request,res:Resp
       message: "User Not Found !",
     });
   }})
+
+
+
+  export const userLogout = globalRequestHandler(async(req:Request,res:Response):Promise<void>=>{
+    const getUserid = parseInt(req.params.id)
+    const get = await userService.getuserLogout(getUserid)
+    if (get) {
+      res.status(StatusCodes.OK).json({
+        message: " Delete successfully",
+      });
+    } else {
+      res.status(StatusCodes.NOT_FOUND).json({
+        message: "User Not Found !",
+      });
+    }})
