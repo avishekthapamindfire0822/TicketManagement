@@ -42,7 +42,8 @@ enum Priority {
 }
 
 enum status {
-  CREATED
+  NEW
   IN_PROGRESS
   COMPLETED
+  REJECTED
 }
