@@ -18,9 +18,11 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use("/api", RootRouter);
 app.use(globalErrorHandler)
-// app.get('/',(req:Request,res:Response)=>{
-//   res.send("Hello")
-// })
+
+app.get('/',(req,res)=>{
+  res.send('hello')
+})
+
 app.listen(PORT,ipAddress, () => {
   console.log(`Server is running on port ${PORT}`);
 });
