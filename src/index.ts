@@ -10,7 +10,11 @@ import * as cors from "cors";
 const PORT = environment.SERVER_PORT || 3000;
 const ipAddress =environment.IP_ADDRESS
 
-app.use(cors())
+app.use(cors({
+  origin: ['https://ticket-management-front-end.vercel.app/'],
+  methods: ["POST", "GET","PUT","DELETE"],
+  credentials: true
+}))
 app.use(bodyParser.json());
 app.use("/api", RootRouter);
 app.use(globalErrorHandler)
