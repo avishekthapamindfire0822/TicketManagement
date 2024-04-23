@@ -4,6 +4,6 @@ export interface tickets {
     description: string;
     priority:string;
     status:string;
-    due_date:Date;
+    due_date:Date|string;
   }
   

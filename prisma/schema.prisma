@@ -31,7 +31,7 @@ model tickets {
   description   String
   priority      Priority
   status        status
-  due_date      DateTime
+  due_date      DateTime @db.Timestamptz()
   comment_count Int  @default(0)
 }
 

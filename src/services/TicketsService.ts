@@ -5,7 +5,7 @@ import { Priority, status } from "@prisma/client";
 
 export const createTicket = async (ticket: tickets): Promise<tickets> => {
   try {
-    const {user_id, title, description,priority,status} = ticket;
+    const {user_id, title, description,priority,status, due_date} = ticket;
     const savedTicket = await prisma.tickets.create({
       data: {
         user_id:user_id,
@@ -13,7 +13,7 @@ export const createTicket = async (ticket: tickets): Promise<tickets> => {
         description:description,
         priority:priority as Priority, 
         status:status  as status,
-        due_date:new Date()
+        due_date:new Date(due_date)
       },
     });
     return savedTicket;
@@ -37,7 +37,9 @@ export const getalltickets = async (): Promise<tickets[]> => {
 
   export const updateticket = async (id: number, ticket: tickets): Promise<tickets> => {
     try {
-      const { title, description,priority, status} = ticket;
+      const { title, description,priority, status,due_date} = ticket;
+      // console.log("due_date: ", due_date, typeof(due_date))
+      const date = new Date(due_date)
       const updatedticket = await prisma.tickets.update({
         where: {
           id,
@@ -47,11 +49,12 @@ export const getalltickets = async (): Promise<tickets[]> => {
         description: description,
         priority:priority as Priority, 
         status:status  as status,
-        due_date:new Date(),
+        due_date:date,
         },
       });
       return updatedticket;
     } catch (error) {
+      console.log(error.message)
       throw new Error("Internal Server Error");
     }
   };
