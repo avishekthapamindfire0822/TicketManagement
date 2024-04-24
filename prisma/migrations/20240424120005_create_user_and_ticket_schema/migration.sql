@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "tickets" ALTER COLUMN "due_date" SET DATA TYPE TIMESTAMPTZ;
