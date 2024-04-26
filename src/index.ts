@@ -1,4 +1,5 @@
 import * as dotenv from "dotenv";
+
 dotenv.config();
 import environment from "./constants";
 import bodyParser = require("body-parser");
@@ -24,6 +25,7 @@ app.get('/',(req,res)=>{
   res.send('hello')
 })
 
-app.listen(PORT,ipAddress, () => {
-  console.log(`Server is running on port ${ipAddress}:${PORT}`);
-});
+export default app;
+// app.listen(PORT,ipAddress, () => {
+//   console.log(`Server is running on port ${ipAddress}:${PORT}`);
+// });
